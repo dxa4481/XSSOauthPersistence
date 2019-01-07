@@ -138,6 +138,8 @@ Installing Oauth applications is a reliable way for attackers to give themselves
 
 This serves as a better replacement for the classical `document.cookie`  XSS vector to get long lived account access.
 
+Here is a partial, but incomplete list of websites that support Oauth https://en.wikipedia.org/wiki/List_of_OAuth_providers
+
 ### Suggestions
 
 Slack and Github send email notifications to users on app install. This is a good control to notify users something might be wrong.
@@ -145,5 +147,7 @@ Slack and Github send email notifications to users on app install. This is a goo
 Github also puts extra controls in place requiring a password be re-entered for sensitive oauth grants. This can be bitter/sweet, as it normalizes users to entering sensitive credentials into the application on a regular basis. For that reason, the above password harvesting technique may be more effective on the user base. That said, prevents this automated Oauth token stealing for those scopes. 
 
 Another effective control would be to move Oauth app grants onto its own subdomain. This limits the attack surface for XSS, as an attacker would need to find an injection point on the same origin, which could be extremely limited in scope to just the Oauth grant.
+
+Some providers, such as Google, already have subdomain seperation of the Oauth grant page. That said, most of the ones I looked at, did not put the Oauth grant page on its own origin.
 
 For this reason, I believe XSS on the same origin as the Oauth grant origin, reflected, stored or DOM, should be treated as considerably higher severity than XSS on origin's that don't host Oauth grants.
